@@ -1,0 +1,23 @@
+---
+
+#CustomNotif is a PocketMine-MP plugin .which functions to customize notifications
+#Author : Azel
+#You can editing the notification .from within the game by using the /customnotif command
+
+#edit join message
+#use {player} for get player gametag
+join-message: "{player} joined"
+
+#death message
+death-message: "{player} death"
+
+#quit message
+quit-message: "{player} quit"
+
+#enable join title
+#If you want to disable the join title feature, change the setting to false 
+enable-join-title: true
+
+#join title
+join-title: "§l§bWELCOME"
+...
