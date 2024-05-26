@@ -5,3 +5,5 @@ You can edit the notification from config.yml or use command /customnotif in gam
 # Commands
 /customnotif - Edit Custom Notification
 
+# Credit
+Icon from https://flaticon.com
