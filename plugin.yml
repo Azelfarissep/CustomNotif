@@ -1,0 +1,15 @@
+name: CustomNotif
+author: Azel
+version: 1.0
+api: 5.0.0
+main: Azel\CustomNotif\Main
+
+commands:
+ customnotif:
+  description: "Edit Join Message"
+  permission: customnotif.edit
+
+permissions:
+ customnotif.edit:
+  description: "Custom Notif editing permission"
+  default: op
