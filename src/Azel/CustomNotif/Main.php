@@ -21,16 +21,14 @@ use jojoe77777\FormAPI\CustomForm;
 class Main extends PluginBase implements Listener{
   
   public function onEnable(): void{
-    @mkdir($this->getDataFolder());
 		$this->saveDefaultConfig();
-		$this->saveResource("config.yml");
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
 		$this->getMessage = new Config($this->getDataFolder() . "config.yml", Config::YAML);
 
   }
   
   public function onJoin(PlayerJoinEvent $ev){
-    $player = $ev->getPlayer();
+    $playee = $eb->getPlayer();
     $pname = $ev->getPlayer()->getName();
     $message = str_replace(["{player}", "{line}"], [$pname, "\n"], $this->getConfig()->get("join-message"));
     $title = str_replace(["{player}", "{line}"], [$pname, "\n"], $this->getConfig()->get("join-title"));
@@ -53,7 +51,7 @@ class Main extends PluginBase implements Listener{
   }
   
   public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args): bool{
-    if($cmd->getName() === "customnotif"){
+    if($cmd->getName() === "customnotif" && $cmd->getName() === "cusnot"){
 			if(!$sender instanceof Player){
 				$sender->sendMessage("§7[§6Custom Notif§7] §cPlease run this command in-game.");
 			}else{
@@ -77,14 +75,13 @@ class Main extends PluginBase implements Listener{
 					  $this->editJoin($player);
 						break;
 					case "1":
-						$this->editJoin($player);
+						$this->editDeath($player);
 						break;
 					case "2":
-					  $this->editJoin($player);
+					  $this->editQuit($player);
 					  break;
 					case "3":
-					  $this->editTitle($player);
-					  break;
+					  $this->editJoinTitle($player);
 					  break;
 				}
 			}
@@ -96,7 +93,6 @@ class Main extends PluginBase implements Listener{
 		$form->addButton("§l§aJoin Title\n§rClick For Editing");
     $form->addButton("§l§cEXIT");
 	  $player->sendForm($form);
-			return $form;
   }
   
   public function editJoin($player){
@@ -111,7 +107,6 @@ class Main extends PluginBase implements Listener{
     $form->setTitle("§l§bEDIT JOIN NOTIF");
     $form->addInput("Input Text");
     $player->sendForm($form);
-    return $form;
     } 
   
   public function editDeath($player){
@@ -129,6 +124,7 @@ class Main extends PluginBase implements Listener{
     return $form;
   }
   
+  
   public function editQuit($player){
     $form = new CustomForm(function (Player $player, ?array $data): void{
       if($data !== null){
@@ -141,9 +137,7 @@ class Main extends PluginBase implements Listener{
     $form->setTitle("§l§bEDIT QUIT NOTIF");
     $form->addInput("Input Text");
     $player->sendForm($form);
-    return $form;
-  } 
-  
+  }
   
   
   public function editTitle($player){
@@ -159,7 +153,6 @@ class Main extends PluginBase implements Listener{
       $form->addInput("Input Text");
       $form->addToggle("Enable", true);
       $player->sendForm($form);
-      return $form;
       } 
     
 } 
